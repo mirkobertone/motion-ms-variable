@@ -17,7 +17,8 @@ export const TENANT_CONNECTION = 'TENANT_CONNECTION';
       scope: Scope.REQUEST,
       useFactory: async (request, configService: ConfigService) => {
         const tenantId =
-          (request.headers[TENANT_HEADER] as string) || 'motion2';
+          (request.headers[TENANT_HEADER] as string) ||
+          configService.get<string>('SQL_DEFAULT_DB');
         if (!tenantId) {
           throw new BadRequestException(
             'Database Connection Error',
@@ -28,8 +29,8 @@ export const TENANT_CONNECTION = 'TENANT_CONNECTION';
           type: 'mysql',
           host: configService.get<string>('HOST'),
           port: configService.get<number>('SQL_PORT'),
-          username: 'root',
-          password: 'xcallyroot@docker',
+          username: configService.get<string>('SQL_USER'),
+          password: configService.get<string>('SQL_PASSWORD'),
           entities: [Variable],
           synchronize: false,
           database: `${tenantId}`,
