@@ -1,0 +1,34 @@
+services:
+  nest-sql-app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: development
+    container_name: nest-sql-app
+    command: npm run start:dev
+    env_file: docker-compose.env
+    depends_on:
+      - mysql
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '8889:8889'
+    networks:
+      internal:
+
+  mysql:
+    image: mysql:5.7.37
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - 3333:3306
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    networks:
+      internal:
+networks:
+  internal:
+volumes:
+  my-datavolume:
