@@ -1,25 +1,14 @@
 import { Module } from '@nestjs/common';
 import { VariablesController } from './variables.controller';
 import { VariablesService } from './variables.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { RmqModule } from 'src/transports/rmq/rmq.module';
+import { BILLING_SERVICE } from 'src/constants/services';
 
 @Module({
   imports: [
-    ClientsModule.register([
-      {
-        name: 'VARIABLE_SERVICE',
-        transport: Transport.RMQ,
-        options: {
-          urls: [
-            'amqps://vzivjkde:noOAzBnmdixLwto4znmv6tYtLRRfF7Or@beaver.rmq.cloudamqp.com/vzivjkde',
-          ],
-          queue: 'main_queue',
-          queueOptions: {
-            durable: false,
-          },
-        },
-      },
-    ]),
+    RmqModule.register({
+      name: BILLING_SERVICE,
+    }),
   ],
   controllers: [VariablesController],
   providers: [VariablesService],

@@ -25,13 +25,13 @@ import { CreateVariableDto } from './dto/create-variable.dto';
 import { UpdateVariableDto } from './dto/update-variable.dto';
 import { Variable } from './variable.entity';
 import { VariablesService } from './variables.service';
-import { Request } from 'express';
+import { BILLING_SERVICE } from 'src/constants/services';
 
 @Controller('variables')
 export class VariablesController {
   constructor(
     private readonly variablesService: VariablesService,
-    @Inject('VARIABLE_SERVICE') private client: ClientProxy,
+    @Inject(BILLING_SERVICE) private client: ClientProxy,
   ) {}
 
   @Post()

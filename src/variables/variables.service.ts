@@ -9,13 +9,14 @@ import { DataSource, Repository } from 'typeorm';
 import { ClientProxy } from '@nestjs/microservices';
 import { TENANT_CONNECTION } from 'src/tenancy/tenancy.module';
 import { intersection, keys, pick } from 'lodash';
+import { BILLING_SERVICE } from 'src/constants/services';
 
 @Injectable()
 export class VariablesService {
   private variableRepository: Repository<Variable>;
   constructor(
     @Inject(TENANT_CONNECTION) private connection: DataSource,
-    @Inject('VARIABLE_SERVICE') private readonly client: ClientProxy,
+    @Inject(BILLING_SERVICE) private readonly client: ClientProxy,
   ) {
     this.variableRepository = this.connection.getRepository(Variable);
   }
