@@ -6,13 +6,13 @@ import { ConfigService } from '@nestjs/config';
 import { Variable } from 'src/variables/variable.entity';
 
 const TENANT_HEADER = 'x-tenant-id';
-export const TENANT_CONNECTION = 'TENANT_CONNECTION';
+export const MYSQL_CONNECTION = 'MYSQL_CONNECTION';
 
 @Global()
 @Module({
   providers: [
     {
-      provide: TENANT_CONNECTION,
+      provide: MYSQL_CONNECTION,
       inject: [REQUEST, ConfigService],
       scope: Scope.REQUEST,
       useFactory: async (request, configService: ConfigService) => {
@@ -45,6 +45,6 @@ export const TENANT_CONNECTION = 'TENANT_CONNECTION';
       },
     },
   ],
-  exports: [TENANT_CONNECTION],
+  exports: [MYSQL_CONNECTION],
 })
 export class TenancyModule {}
