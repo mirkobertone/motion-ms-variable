@@ -1,10 +1,12 @@
+version: '3.8'
+
 services:
   nest-sql-app:
     build:
       context: .
       dockerfile: ./Dockerfile
       target: development
-    container_name: nest-sql-app
+    container_name: nest-app
     command: npm run start:dev
     env_file: docker-compose.env
     depends_on:
@@ -18,17 +20,20 @@ services:
       internal:
 
   mysql:
-    image: mysql:5.7.37
-    container_name: mysql
+    image: mysql:8
+    container_name: nest-mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: 'motion2'
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - 3333:3306
+      - 3333:${MYSQL_PORT}
     volumes:
-      - my-datavolume:/var/lib/mysql
+      - datavolume:/var/lib/mysql
     networks:
       internal:
 networks:
   internal:
 volumes:
-  my-datavolume:
+  datavolume:

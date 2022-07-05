@@ -21,7 +21,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "doc": "compodoc -p tsconfig.json",
-    "doc:serve": "npm run doc && compodoc -s"
+    "doc:serve": "npm run doc && compodoc -s",
+    "dc:up": "docker-compose --env-file docker-compose.env up --build -d",
+    "dc:down": "docker-compose down --remove-orphans"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",

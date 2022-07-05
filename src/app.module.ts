@@ -9,11 +9,11 @@ import * as Joi from 'joi';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
-        SQL_PORT: Joi.number().required(),
+        MYSQL_PORT: Joi.number().required(),
         PORT: Joi.number().required(),
-        SQL_USER: Joi.string().required(),
-        SQL_PASSWORD: Joi.string().required(),
-        SQL_DEFAULT_DB: Joi.string().required(),
+        MYSQL_USER: Joi.string().required(),
+        MYSQL_PASSWORD: Joi.string().required(),
+        MYSQL_DEFAULT_DB: Joi.string().required(),
         RABBIT_MQ_URI: Joi.string().required(),
         HOST: Joi.string().required(),
       }),
