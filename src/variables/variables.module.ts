@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { VariablesController } from './variables.controller';
 import { VariablesService } from './variables.service';
 import { RmqModule } from 'src/transports/rmq/rmq.module';
-import { BILLING_SERVICE } from 'src/constants/services';
+import { VARIABLES_SERVICE } from 'src/constants/services';
 
 @Module({
   imports: [
     RmqModule.register({
-      name: BILLING_SERVICE,
+      name: VARIABLES_SERVICE,
     }),
   ],
   controllers: [VariablesController],

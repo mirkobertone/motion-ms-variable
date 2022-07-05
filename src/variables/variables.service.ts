@@ -9,14 +9,14 @@ import { DataSource, Repository } from 'typeorm';
 import { ClientProxy } from '@nestjs/microservices';
 import { MYSQL_CONNECTION } from 'src/connections/mysql.module';
 import { intersection, keys, pick } from 'lodash';
-import { BILLING_SERVICE } from 'src/constants/services';
+import { VARIABLES_SERVICE } from 'src/constants/services';
 
 @Injectable()
 export class VariablesService {
   private variableRepository: Repository<Variable>;
   constructor(
     @Inject(MYSQL_CONNECTION) private connection: DataSource,
-    @Inject(BILLING_SERVICE) private readonly client: ClientProxy,
+    @Inject(VARIABLES_SERVICE) private readonly client: ClientProxy,
   ) {
     this.variableRepository = this.connection.getRepository(Variable);
   }
