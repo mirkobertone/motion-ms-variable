@@ -57,7 +57,7 @@ export class VariablesController {
   async findAll(
     @Query() query,
     @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset = 0,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit = 10,
+    @Query('limit', new DefaultValuePipe(250), ParseIntPipe) limit = 250,
   ) {
     // const request = this.client.send('all', {});
     // console.log(await firstValueFrom(request));
