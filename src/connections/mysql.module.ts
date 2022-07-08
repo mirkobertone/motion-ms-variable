@@ -42,4 +42,3 @@ export const MYSQL_CONNECTION = 'MYSQL_CONNECTION';
   exports: [MYSQL_CONNECTION],
 })
 export class MySqlModule {}
-
