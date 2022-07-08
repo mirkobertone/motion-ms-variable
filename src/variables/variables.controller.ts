@@ -24,7 +24,13 @@ import { UpdateVariableDto } from './dto/update-variable.dto';
 import { Variable } from './variable.entity';
 import { VariablesService } from './variables.service';
 import { VARIABLES_SERVICE } from 'src/constants/services';
-
+import {
+  ApiCreatedResponse,
+  ApiFoundResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+@ApiTags('variables')
 @Controller('variables')
 export class VariablesController {
   constructor(
@@ -33,7 +39,14 @@ export class VariablesController {
   ) {}
 
   @Post()
-  async create(@Body() createVariableDto: CreateVariableDto) {
+  @ApiOperation({ summary: 'Create Variable' })
+  @ApiCreatedResponse({
+    description: 'Variable has been successfully created.',
+    type: Variable,
+  })
+  async create(
+    @Body() createVariableDto: CreateVariableDto,
+  ): Promise<Variable> {
     return await this.variablesService.create({
       name: createVariableDto.name,
       description: createVariableDto.description,
@@ -66,6 +79,9 @@ export class VariablesController {
   }
 
   @Get(':id')
+  @ApiFoundResponse({
+    description: 'Variable has been successfully found.',
+  })
   async findOne(@Param('id') id: number): Promise<Variable> {
     return this.variablesService.get(id);
   }
