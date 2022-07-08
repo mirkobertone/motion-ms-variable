@@ -1,4 +1,4 @@
-import { BadRequestException, Global, Module, Scope } from '@nestjs/common';
+import { Global, Module, Scope } from '@nestjs/common';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { REQUEST } from '@nestjs/core';
 import { createDatabase } from 'typeorm-extension';
@@ -19,12 +19,6 @@ export const MYSQL_CONNECTION = 'MYSQL_CONNECTION';
         const tenantId =
           (request.headers[TENANT_HEADER] as string) ||
           configService.get<string>('MYSQL_DEFAULT_DB');
-        if (!tenantId) {
-          throw new BadRequestException(
-            'Database Connection Error',
-            'TenantId not provided in header x-tenant-id',
-          );
-        }
         const options: DataSourceOptions = {
           type: 'mysql',
           host: configService.get<string>('HOST'),
@@ -47,4 +41,4 @@ export const MYSQL_CONNECTION = 'MYSQL_CONNECTION';
   ],
   exports: [MYSQL_CONNECTION],
 })
-export class TenancyModule {}
+export class MySqlModule {}

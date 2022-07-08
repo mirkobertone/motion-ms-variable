@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { VariablesModule } from './variables/variables.module';
-import { TenancyModule } from './connections/mysql.module';
+import { MySqlModule } from './connections/mysql.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 
@@ -20,7 +20,7 @@ import * as Joi from 'joi';
       envFilePath: './.env',
     }),
     VariablesModule,
-    TenancyModule,
+    MySqlModule,
   ],
 })
 export class AppModule {}

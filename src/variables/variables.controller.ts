@@ -10,7 +10,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
 } from '@nestjs/common';
 import {
   ClientProxy,
@@ -20,7 +19,6 @@ import {
   NatsContext,
   Payload,
 } from '@nestjs/microservices';
-import { firstValueFrom } from 'rxjs';
 import { CreateVariableDto } from './dto/create-variable.dto';
 import { UpdateVariableDto } from './dto/update-variable.dto';
 import { Variable } from './variable.entity';
@@ -55,7 +53,7 @@ export class VariablesController {
 
   @Get()
   async findAll(
-    @Query() query,
+    @Query() query = {},
     @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset = 0,
     @Query('limit', new DefaultValuePipe(250), ParseIntPipe) limit = 250,
   ) {
