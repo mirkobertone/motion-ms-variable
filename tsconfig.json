@@ -20,6 +20,8 @@
     "typeRoots": [
       "./types",
       "./node_modules/@types",
-    ]
+    ],
+    "esModuleInterop": true,
+    "lib": ["esnext"],  
   }
 }

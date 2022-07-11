@@ -1,2 +1,4 @@
 export const VARIABLES_SERVICE = 'VARIABLES';
 export const USERS_SERVICE = 'USERS';
+
+export const MYSQL_CONNECTION = 'MYSQL_CONNECTION';

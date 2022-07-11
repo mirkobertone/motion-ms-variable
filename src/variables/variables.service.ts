@@ -7,9 +7,8 @@ import {
 import { Variable } from './variable.entity';
 import { DataSource, Repository } from 'typeorm';
 import { ClientProxy } from '@nestjs/microservices';
-import { MYSQL_CONNECTION } from 'src/connections/mysql.module';
 import { intersection, keys, pick } from 'lodash';
-import { VARIABLES_SERVICE } from 'src/constants/services';
+import { MYSQL_CONNECTION, VARIABLES_SERVICE } from '../constants/services';
 
 @Injectable()
 export class VariablesService {

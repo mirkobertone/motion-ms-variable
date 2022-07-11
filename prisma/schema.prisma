@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+// *  MYSQL *
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model UserPrisma {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   email String @unique
+//   firstName String?
+//   lastName  String?
+//   @@map("users")
+// }
+
+
+// *  MONGODB *
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model UserPrisma {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email String @unique
+  firstName String?
+  lastName  String?
+  @@map("users")
+}
+

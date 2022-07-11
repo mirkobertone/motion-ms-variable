@@ -4,9 +4,9 @@ import { REQUEST } from '@nestjs/core';
 import { createDatabase } from 'typeorm-extension';
 import { ConfigService } from '@nestjs/config';
 import { Variable } from 'src/variables/variable.entity';
+import { MYSQL_CONNECTION } from 'src/constants/services';
 
 const TENANT_HEADER = 'x-tenant-id';
-export const MYSQL_CONNECTION = 'MYSQL_CONNECTION';
 
 @Global()
 @Module({

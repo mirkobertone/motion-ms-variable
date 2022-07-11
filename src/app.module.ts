@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { MongoModule } from './connections/mongo.module';
 import { UsersModule } from './users/users.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { UsersPrismaModule } from './users-prisma/users-prisma.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     MySqlModule,
     MongoModule,
+    PrismaModule,
+    UsersPrismaModule,
   ],
 })
 export class AppModule {}
